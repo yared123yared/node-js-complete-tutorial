@@ -1,12 +1,21 @@
-const path =require('path')
+const http=require('http')
 
-console.log(path.sep)
+const server=http.createServer((req,res)=>{
+    if(req.url==='/'){
+        res.end("Welcome to out home page")
+    }
+    if(req.url==='/about'){
+        res.end("here is our shourt history")
+    }
+    // res.write('Welcome to our home page')
+    res.end(`
+    <h1>Oops!</h1>
+<p>We can't seem to find the page you are looking for</p>
+<a href="/">back home</a>`
 
-const filePath=path.join('./content','subfolder', 'text.txt')
+    )
+    
+    
+})
 
-console.log(filePath)
-
-const base=path.basename(filePath)
-console.log(base)
-const absolute=path.resolve(__dirname,'content','subfolder', 'text.txt')
-console.log(absolute)
+server.listen(5000)
